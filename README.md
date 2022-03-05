@@ -11,3 +11,5 @@
 1. Установить npm зависимости: npm install
 2. Запустить MongoDB: mongod
 3. Запустить проект: npm run start или npn run dev (запуск сервера с hot-reload)
+
+* [Ссылка на  backend проекта](https://backend.movies.students.nomoredomains.xyz)

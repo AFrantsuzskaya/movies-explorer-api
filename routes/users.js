@@ -1,6 +1,6 @@
 const routerUsers = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { getUser, patchUser, getUsers } = require('../controllers/users');
+const { getUser, patchUser } = require('../controllers/users');
 
 routerUsers.get('/me', getUser);
 routerUsers.patch('/me', celebrate({
