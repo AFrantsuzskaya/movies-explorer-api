@@ -7,14 +7,6 @@ const ConflictError = require('../errors/409-conflict-error');
 const BadRequestError = require('../errors/400-bad-request-error');
 const NotFoundError = require('../errors/404-not-found-error');
 
-module.exports.getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => {
-      res.status(200).send(users);
-    })
-    .catch(next);
-};
-
 module.exports.createUser = (req, res, next) => {
   const { email, password, name } = req.body;
   bcrypt.hash(password, 8)

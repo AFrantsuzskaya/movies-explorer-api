@@ -7,13 +7,10 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { celebrate, Joi, errors } = require('celebrate');
 
-const routerUsers = require('./routes/users');
-const routerMovies = require('./routes/movies');
-const { createUser, login, logout } = require('./controllers/users');
-const auth = require('./middleware/auth');
+const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const errorHandler = require('./middleware/error-handler');
-console.log(process.env);
+
 const { PORT = 3002 } = process.env;
 const app = express();
 
@@ -29,26 +26,7 @@ app.use(helmet());
 
 app.use(requestLogger);
 
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
-    name: Joi.string().min(2).max(30),
-  }),
-}), createUser);
-
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
-  }),
-}), login);
-
-app.use(auth);
-
-app.use('/users', routerUsers);
-app.use('/movies', routerMovies);
-app.post('/signout', logout);
+app.use(routes);
 
 app.use(errorLogger);
 app.use(errors());
