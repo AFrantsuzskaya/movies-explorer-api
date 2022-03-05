@@ -13,8 +13,8 @@ const { createUser, login, logout } = require('./controllers/users');
 const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const errorHandler = require('./middleware/error-handler');
-
-const { PORT = 3001 } = process.env;
+console.log(process.env);
+const { PORT = 3002 } = process.env;
 const app = express();
 
 app.use('*', cors({
