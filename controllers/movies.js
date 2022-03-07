@@ -62,5 +62,6 @@ module.exports.deleteMovies = (req, res, next) => {
       return movie.remove()
         .then(() => res.send('Фильм удалён'))
         .catch(next);
-    });
+    })
+    .catch(next);
 };

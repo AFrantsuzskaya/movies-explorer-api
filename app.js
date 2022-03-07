@@ -11,7 +11,7 @@ const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const errorHandler = require('./middleware/error-handler');
 
-const { PORT = 3002 } = process.env;
+const { PORT = 3000, DB_ADDRESS = 'mongodb://localhost:27017/moviesdb' } = process.env;
 const app = express();
 
 app.use('*', cors({
@@ -32,7 +32,7 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-mongoose.connect('mongodb://localhost:27017/moviesdb', {
+mongoose.connect(DB_ADDRESS, {
   // useNewUrlParser: true,
   // useCreateIndex: true,
   // useFindAndModify: false,
